@@ -1,0 +1,19 @@
+/* .MusicPlayer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0.5, 0.5, 0.5, 0.5);
+}
+*/
+.MusicPlayer {
+  display: grid;
+}
+
+.MusicPlayer .player {
+  background-color: transparent;
+}
+
+.MusicPlayer .description {
+  font-size: 12px;
+}

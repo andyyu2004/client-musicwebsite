@@ -1,0 +1,17 @@
+.NavbarList {
+  background-color: transparent;
+  text-align: center;
+  list-style-type: none;
+}
+
+.NavbarList li {
+  display: inline;
+}
+
+.NavbarList .link {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 24px;
+  color: white;
+}
