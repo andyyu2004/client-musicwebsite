@@ -1,12 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { SYNC_STORE_WITH_SESSION } from '../actions/constants';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-const Account = () => (
-  <>
-    <h3>Account</h3>
-    <Link className='link' to='/account/register'>Register</Link>
-    <Link className='link' to='/account/signin'>Sign In</Link>
-  </>
-);
+const Account = withRouter(({ history, match, syncStoreWithSession }) => {
+  
+  const logout = () => { 
+    sessionStorage.removeItem('jwtToken');
+    sessionStorage.removeItem('currUser');
+    syncStoreWithSession();
+    history.push('/home');
+  };
 
-export default Account;
+  return (
+    <>
+      <p>{match.url}</p>
+      <button onClick={logout}>Logout</button>
+    </>
+  );
+});
+
+const mapDispatchToProps = dispatch => ({
+  syncStoreWithSession: () => dispatch({ type: SYNC_STORE_WITH_SESSION }),
+
+});
+
+export default connect(null, mapDispatchToProps)(Account);
