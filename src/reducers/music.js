@@ -1,4 +1,4 @@
-import { FETCH_TRACKS_ASYNC, SET_CURR_TRACK, SET_CURR_TRACK_TORRENT_ASYNC } from '../actions/constants';
+import { FETCH_TRACKS_ASYNC, SET_CURR_TRACK, SET_CURR_TRACK_TORRENT_ASYNC, LOGOUT_RESET_AUTH } from '../actions/constants';
 
 const initialState = {
   albums: {
@@ -58,6 +58,10 @@ export default (state = initialState, action) => {
           },
         },
       };
+    }
+
+    case LOGOUT_RESET_AUTH: {
+      return initialState;
     }
 
     default:

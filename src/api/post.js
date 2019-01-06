@@ -7,7 +7,9 @@ export async function uploadFile(e) {
   form.append('foo', files);
   for (let i = 0; i < files.length; i++)
     form.append(`file${i}`, files[i]);
-  axios.post('/api/upload', form)
+  let file = files[0];
+
+  axios.post(`/api/protected/upload?jwt_token=${sessionStorage.getItem('jwtToken')}`, form)
   .then(resp => console.log(resp))
   .catch(err => console.log(err));
 }
