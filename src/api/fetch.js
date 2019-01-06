@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export async function fetchTrackList() {
   try {
-    const resp = await axios.get('/api/protected/music/tracks');
+    const jwtToken = sessionStorage.getItem('jwtToken');
+    const resp = await axios.get(`/api/protected/music/tracks?jwt_token=${jwtToken}`);
     return resp.data;
   } catch(err) {
     return console.log(err);
@@ -11,7 +12,8 @@ export async function fetchTrackList() {
 
 export async function fetchAlbumsList() {
   try {
-    const resp = await axios.get('/api/protected/music/albums');
+    const jwtToken = sessionStorage.getItem('jwtToken');
+    const resp = await axios.get(`/api/protected/music/albums?jwt_token=${jwtToken}`);
     return resp.data;
   } catch(err) {
     return console.log(err);

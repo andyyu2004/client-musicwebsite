@@ -14,7 +14,6 @@ export function* watchFetchTracks() {
   yield takeLatest(FETCH_TRACKS, fetchTracksAsync);
 }
 
-
 // function* fetchTrackUrlAsync(action) {
 //   yield console.log("ACTION", action.payload.filename);
 // }

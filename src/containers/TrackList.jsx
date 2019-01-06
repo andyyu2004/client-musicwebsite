@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
       album,
       artist,
       genre,
-      url: `/api/music/tracks/${encoding}/${trackid}`,
+      url: `/api/protected/music/tracks/${encoding}/${trackid}?jwt_token=${sessionStorage.getItem('jwtToken')}`,
     } 
   }),
 });

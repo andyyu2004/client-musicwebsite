@@ -10,9 +10,8 @@ const SignIn = ({ token, syncStoreWithSession }) => {
   const [ password, setPassword ] = useState('');
 
   const onClick = e => {
-  
-    const headers = { Authorization: `Bearer ${token}` };
-    axios.get('/api/protected', { headers });
+    // const headers = { Authorization: `Bearer ${token}` };
+    // axios.get('/api/protected', { headers });
   }
 
   const onSubmit = async e => {

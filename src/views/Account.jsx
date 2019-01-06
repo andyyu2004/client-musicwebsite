@@ -1,15 +1,16 @@
 import React from 'react';
-import { SYNC_STORE_WITH_SESSION } from '../actions/constants';
+import { SYNC_STORE_WITH_SESSION, LOGOUT_RESET_AUTH } from '../actions/constants';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const Account = withRouter(({ history, match, syncStoreWithSession }) => {
+const Account = withRouter(({ resetAllAuth, history, match, syncStoreWithSession }) => {
   
   const logout = () => { 
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('currUser');
     syncStoreWithSession();
     history.push('/home');
+    resetAllAuth();
   };
 
   return (
@@ -22,7 +23,7 @@ const Account = withRouter(({ history, match, syncStoreWithSession }) => {
 
 const mapDispatchToProps = dispatch => ({
   syncStoreWithSession: () => dispatch({ type: SYNC_STORE_WITH_SESSION }),
-
+  resetAllAuth: () => dispatch({ type: LOGOUT_RESET_AUTH }),
 });
 
 export default connect(null, mapDispatchToProps)(Account);
