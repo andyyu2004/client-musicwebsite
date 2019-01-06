@@ -1,6 +1,6 @@
-import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC, ATTEMPT_SIGN_IN  } from '../actions/constants';
+import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC } from '../actions/constants';
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { fetchTrackList, fetchStream } from '../api/fetch';
+import { fetchTrackList  } from '../api/fetch';
 import { getTorrent } from '../api/torrent';
 
 function* fetchTracksAsync() {
@@ -25,9 +25,7 @@ export function* watchFetchTracks() {
 // }
 
 function* setCurrTrackTorrentAsync(action) {
-  const { url } = action.payload;
-  const headers = yield call(fetchStream, url);
-  const { filename } = headers;
+  const { url, filename } = action.payload;
   yield put({ type: SET_CURR_TRACK_TORRENT_ASYNC, payload: { url, filename }});
 }
 
@@ -43,12 +41,4 @@ function* downloadTorrentAsync(action) {
 
 export function* watchDownloadTorrent() {
   yield takeLatest(DOWNLOAD_TORRENT, downloadTorrentAsync);
-}
-
-function* attemptSignInAsync(action) {
-  yield console.log(action);
-  
-}
-export function* watchAttemptSignIn() {
-  yield takeLatest(ATTEMPT_SIGN_IN, attemptSignInAsync);
 }

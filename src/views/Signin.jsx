@@ -1,29 +1,33 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { ATTEMPT_SIGN_IN } from '../actions/constants';
+import { ATTEMPT_SIGN_IN, SYNC_STORE_WITH_SESSION } from '../actions/constants';
+import { signIn } from '../api/post';
 
-const SignIn = ({ signIn }) => {
+const SignIn = ({ token, syncStoreWithSession }) => {
   
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const onClick = e => {
-    axios.get('/api/testAuth');
+  
+    const headers = { Authorization: `Bearer ${token}` };
+    axios.get('/api/protected', { headers });
   }
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (!email || !password) alert("Please enter an email AND password");
-    signIn(email, password);
-  };
+    await signIn({ email, password });
+    syncStoreWithSession();
+  }
 
   return (
     <>
       <h3>SignIn</h3>
       <form onSubmit={onSubmit}>
       <input type="text" placeholder="email" onChange={e => setEmail(e.target.value)}></input>
-        <input type="text" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
+        <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
         <input type="submit"></input>
       </form>
       <button onClick={onClick}>Check Authenticated</button>
@@ -32,7 +36,7 @@ const SignIn = ({ signIn }) => {
 }
 
 const mapStateToProps = state => ({
-  // loginMessage: state
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -42,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
       email, password
     },
   }),
-  
+  syncStoreWithSession: () => dispatch({ type: SYNC_STORE_WITH_SESSION }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
