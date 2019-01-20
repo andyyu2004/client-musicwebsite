@@ -1,6 +1,6 @@
 import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC } from '../actions/constants';
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { fetchTrackList  } from '../api/fetch';
+import { fetchTrackList  } from '../api/get';
 import { getTorrent } from '../api/torrent';
 
 function* fetchTracksAsync() {

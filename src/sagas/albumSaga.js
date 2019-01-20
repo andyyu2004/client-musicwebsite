@@ -1,6 +1,6 @@
 import { FETCH_ALBUMS, FETCH_ALBUMS_ASYNC } from '../actions/constants';
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { fetchAlbumsList } from '../api/fetch';
+import { fetchAlbumsList } from '../api/get';
 
 function* watchFetchAlbumsAsync() {
   const albums = yield call(fetchAlbumsList);

@@ -9,9 +9,15 @@ const SignIn = ({ token, syncStoreWithSession }) => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  const onClick = e => {
+  const onClick = async e => {
     // const headers = { Authorization: `Bearer ${token}` };
     // axios.get('/api/protected', { headers });
+    // console.log(await test());
+  }
+
+  const test = () => {
+    return axios.get('/api/music/artists')
+    .then(resp => resp.data);
   }
 
   const onSubmit = async e => {
