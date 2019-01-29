@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import { all } from 'redux-saga/effects';
-import { watchFetchTracks, watchDownloadTorrent, watchSetCurrTrackTorrent } from './trackSaga';
+import { watchFetchTracks, watchDownloadTorrent, watchSetCurrTrackTorrent, watchDeleteTracks } from './trackSaga';
 import { watchFetchAlbums } from './albumSaga';
 
 export default function* rootSaga() {
@@ -9,5 +9,6 @@ export default function* rootSaga() {
     fork(watchDownloadTorrent),
     fork(watchSetCurrTrackTorrent),
     fork(watchFetchAlbums),
+    fork(watchDeleteTracks)
   ]);
 }

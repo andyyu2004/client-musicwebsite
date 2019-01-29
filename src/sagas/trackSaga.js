@@ -1,7 +1,8 @@
-import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC } from '../actions/constants';
+import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC, DELETE_TRACK } from '../actions/constants';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { fetchTrackList  } from '../api/get';
 import { getTorrent } from '../api/torrent';
+import { deleteTracks } from '../api/delete';
 
 function* fetchTracksAsync() {
   // const resp = yield call(axios.get, '/api/music/tracks');
@@ -22,6 +23,17 @@ export function* watchFetchTracks() {
 //   yield console.log("SDFJHSDFKWEYREWR");
 //   yield takeLatest(FETCH_TRACK_URL, fetchTrackUrlAsync);
 // }
+
+export function* watchDeleteTracks() {
+  yield takeLatest(DELETE_TRACK, deleteTracksAsync)
+}
+
+function* deleteTracksAsync(action) {
+  const { url } = action.payload
+  console.log("Deleting Track")
+  yield call(deleteTracks, url)
+  yield put({ type: FETCH_TRACKS })
+}
 
 function* setCurrTrackTorrentAsync(action) {
   const { url, filename } = action.payload;
