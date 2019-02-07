@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ATTEMPT_SIGN_IN, SYNC_STORE_WITH_SESSION } from '../actions/constants';
 import { signIn } from '../api/post';
 
-const SignIn = ({ token, syncStoreWithSession }) => {
+const SignIn = ({ token, syncStoreWithSession, message }) => {
   
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
@@ -26,10 +26,11 @@ const SignIn = ({ token, syncStoreWithSession }) => {
     await signIn({ email, password });
     syncStoreWithSession();
   }
-
+  
   return (
     <>
       <h3>SignIn</h3>
+      <p>{message}</p>
       <form onSubmit={onSubmit}>
       <input type="text" placeholder="email" onChange={e => setEmail(e.target.value)}></input>
         <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
@@ -41,7 +42,7 @@ const SignIn = ({ token, syncStoreWithSession }) => {
 }
 
 const mapStateToProps = state => ({
-
+  message: state.message.loginMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

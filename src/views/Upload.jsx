@@ -7,6 +7,8 @@ const Upload = () => {
   const server = `/api/protected/upload?jwt_token=${sessionStorage.getItem('jwtToken')}`
   return (
     <div>
+      <p>Note: .flac and .mp3 are supported on all platforms. Other formats are not guaranteed</p>
+      <p>Please remain on this page until done</p>
       {/* <h3>Upload Screen</h3>
       <form encType="multipart/form-data">
         <input type="file" onChange={uploadFile} multiple/>

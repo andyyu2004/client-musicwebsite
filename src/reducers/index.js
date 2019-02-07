@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import music from './music';
-import albums from './albums';
+import album from './album';
 import user from './user';
+import message from './message';
 
 const rootReducer = combineReducers({
   music,
-  albums,
+  album,
   user,
+  message,
 });
 
 export default rootReducer;

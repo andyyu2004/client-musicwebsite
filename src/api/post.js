@@ -16,11 +16,16 @@ export async function uploadFile(e) {
 
 export async function registerUser(User) {
   const { password } = User;
-  const salt = crypto.randomBytes(64).toString('hex');
-  const hash = crypto.pbkdf2Sync(password, salt, 100, 512, 'sha512').toString('hex');
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex');
   User.password = hash;
   User.salt = salt;
-  await axios.post('/api/register', User);
+  try {
+    const res = await axios.post('/api/register', User).catch(err => { throw err; });
+    return res;
+  } catch (err) {
+    throw err;
+  }
 }
 
 export async function signIn(User) {
@@ -30,10 +35,9 @@ export async function signIn(User) {
   if (!salt) {
     return console.log("Email does not exist");
   }
-  const hash = crypto.pbkdf2Sync(password, salt, 100, 512, 'sha512').toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex');  
   User.password = hash;
   const response = await axios.post('/api/signin', User);
-  console.log(response);
   if (!response) {
     return console.log("Incorrect password");
   }
