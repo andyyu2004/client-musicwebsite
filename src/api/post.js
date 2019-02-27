@@ -16,7 +16,7 @@ export async function uploadFile(e) {
 
 export async function registerUser(User) {
   const { password } = User;
-  const salt = crypto.randomBytes(16).toString('hex');
+  const salt = crypto.randomBytes(16).toString('utf-8'); 
   const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex');
   User.password = hash;
   User.salt = salt;

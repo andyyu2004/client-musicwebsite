@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { TrackList } from '../containers';
+import { AlbumList } from '../containers';
 import { connect } from 'react-redux';
 import { FETCH_ALBUMS } from '../actions/constants';
 
@@ -14,18 +14,19 @@ class Albums extends PureComponent {
     return (
       <div>
         <h4>Albums</h4>
-        <TrackList items={albums} />
+        <AlbumList albums={albums} />
       </div>
     );
   }
+
 }
 
 const mapStateToProps = state => {
-  const { all } = state.albums;
+  const { all } = state.album;
   return {
     albums: all,
   };
-}
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchAlbums: () => dispatch({ type: FETCH_ALBUMS }),

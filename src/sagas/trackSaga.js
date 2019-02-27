@@ -1,6 +1,6 @@
-import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC, DELETE_TRACK } from '../actions/constants';
+import { FETCH_TRACKS, FETCH_TRACKS_ASYNC, DOWNLOAD_TORRENT, SET_CURR_TRACK_TORRENT, SET_CURR_TRACK_TORRENT_ASYNC, DELETE_TRACK, FETCH_TRACKS_BY_ALBUM_ID_ASYNC, FETCH_TRACKS_BY_ALBUM_ID } from '../actions/constants';
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { fetchTrackList  } from '../api/get';
+import { fetchTrackList, fetchTracksByAlbumId  } from '../api/get';
 import { getTorrent } from '../api/torrent';
 import { deleteTracks } from '../api/delete';
 
@@ -30,9 +30,19 @@ export function* watchDeleteTracks() {
 
 function* deleteTracksAsync(action) {
   const { url } = action.payload
-  console.log("Deleting Track")
   yield call(deleteTracks, url)
   yield put({ type: FETCH_TRACKS })
+}
+
+function* fetchTracksByAlbumIdAsync(action) {
+  const { albumid } = action.payload;
+  const tracks = yield call(fetchTracksByAlbumId, albumid)
+  console.log(tracks)
+  yield put({ type: FETCH_TRACKS_BY_ALBUM_ID_ASYNC, payload: { tracks, albumid }});
+}
+
+export function* watchFetchTracksByAlbumId() {
+  yield takeLatest(FETCH_TRACKS_BY_ALBUM_ID, fetchTracksByAlbumIdAsync)
 }
 
 function* setCurrTrackTorrentAsync(action) {

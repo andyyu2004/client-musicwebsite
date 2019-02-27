@@ -5,9 +5,9 @@ import '../css/Navbar.scss';
 const Navbar = ({ base, links }) => (
   <>
     <ul className="NavbarList">
-      {links.map(link => (
+      {links.map(link => 
         <li key={link}><Link className="link" to={`/${base}/${link}`}>{link}</Link></li>
-      ))}
+      )}
     </ul>
   </>
 );

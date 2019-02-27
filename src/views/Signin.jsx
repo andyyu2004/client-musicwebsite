@@ -36,7 +36,6 @@ const SignIn = ({ token, syncStoreWithSession, message }) => {
         <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}></input>
         <input type="submit"></input>
       </form>
-      <button onClick={onClick}>Check Authenticated</button>
     </>
   );
 }

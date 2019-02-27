@@ -1,6 +1,5 @@
 export { default as About } from './About';
 export { default as Home } from './Home';
-export { default as Music } from './Music';
 export { default as NotFound } from './NotFound';
 export { default as TopicList } from './TopicList';
 export { default as Tracks } from './Tracks';
@@ -11,3 +10,6 @@ export { default as TorrentTrack } from './TorrentTrack';
 export { default as Account } from './Account';
 export { default as Register } from './Register';
 export { default as SignIn } from './Signin';
+export { default as AlbumView } from './AlbumView';
+export { default as ArtistView } from './ArtistView';
+export { default as ArtistsView } from './ArtistsView';

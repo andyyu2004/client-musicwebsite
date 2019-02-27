@@ -10,10 +10,15 @@
   display: grid;
 }
 
+.MusicPlayer .title {
+  margin: 0 auto;
+}
+
 .MusicPlayer .player {
   background-color: transparent;
 }
 
-.MusicPlayer .description {
+.MusicPlayer .albumArtistText {
   font-size: 12px;
+  margin: 0 auto;
 }

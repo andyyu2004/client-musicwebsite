@@ -11,7 +11,6 @@ import {
   Home, 
   NotFound, 
   TopicList, 
-  Music,
   Upload,
   Tracks,
   Albums,
@@ -20,8 +19,12 @@ import {
   Account,
   Register,
   SignIn,
+  AlbumView,
+  ArtistView,
+  ArtistsView,
 } from './views';
 import { SYNC_STORE_WITH_SESSION } from './actions/constants';
+import QueueList from './containers/QueueList';
 
 
 const App = ({ user, syncStoreWithSession }) => {
@@ -52,16 +55,16 @@ const Authenticated = ({ user }) => {
       <div className="mainContainer">
         <main className="viewContainer">
           <Switch>
-            <Route exact path='/'><Redirect to='/home' /></Route>
             <Route exact path='/about' component={About} />
             <Route exact path='/topics' component={TopicList} />
             <Route exact path='/library' component={Library} />
             <Route exact path='/library/tracks' component={Tracks} />
             <Route exact path='/library/albums' component={Albums} />
+            <Route exact path='/library/albums/:albumid' component={AlbumView} />
+            <Route exact path='/library/artists' component={ArtistsView} />
+            <Route exact path='/library/artists/:artistid' component={ArtistView} />
             <Route exact path='/torrent' component={TorrentTrack} />
             <Route exact path='/upload' component={Upload} />
-            <Route exact path='/music' component={Music} />
-            <Route exact path='/music/tracks' component={Tracks} />
             <Route exact path='/account/register' component={Register} />
             <Route exact path='/account/signin' component={SignIn} />
             <Route exact path={`/${user}`} component={Account} />
@@ -71,6 +74,9 @@ const Authenticated = ({ user }) => {
       </div>
       <div className="MusicPlayerContainer">
         <MusicPlayer />
+      </div>
+      <div className="QueueContainer">
+        <QueueList />
       </div>
     </div>
   );

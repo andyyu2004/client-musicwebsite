@@ -2,17 +2,10 @@ import { FETCH_TRACKS_ASYNC, SET_CURR_TRACK, SET_CURR_TRACK_TORRENT_ASYNC, LOGOU
 
 const initialState = {
   albums: {
-    all: null
+    all: []
   },
   tracks: {
-    all: null,
-    currTrack: {
-      artist: null,
-      album: null,
-      track: null,
-      genre: null,
-      url: null,
-    },
+    all: [],
   },
 };
 
@@ -26,24 +19,6 @@ export default (state = initialState, action) => {
           all: action.payload.tracks
         },
       };
-
-    case SET_CURR_TRACK: {
-      const { artist, album, track, genre, url } = action.payload;
-      return {
-        ...state,
-        tracks: {
-          ...state.tracks,
-          currTrack: {
-            ...state.tracks.currTrack,
-            artist, 
-            album,
-            track,
-            genre,
-            url,
-          },
-        }
-      };
-    }
 
     case SET_CURR_TRACK_TORRENT_ASYNC: {
       const { filename, url } = action.payload;

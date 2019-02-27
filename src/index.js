@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
+import { HotKeys } from 'react-hotkeys';
+import { keyBindings, handlers } from './utility/keyBindings';
 
 if (isMobile) {
   ReactDOM.render(
@@ -20,7 +22,9 @@ if (isMobile) {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
-        <App />
+        <HotKeys keyMap={keyBindings} handlers={handlers}>
+          <App />
+        </HotKeys>
       </Router> 
     </Provider>,
   document.getElementById('root'));

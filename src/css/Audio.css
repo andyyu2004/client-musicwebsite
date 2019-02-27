@@ -1,0 +1,62 @@
+.Audio {
+  display: grid;
+}
+
+.Audio input {
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 5px;   
+  background: #444444;
+  outline: none;
+}
+
+.Audio input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #dddddd;
+  cursor: pointer;
+}
+
+/* .Audio.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+} */
+
+.Audio .playbackSliderContainer {
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.Audio .icon {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.Audio .controlsContainer {
+  margin: 0 auto;
+}
+
+.Audio .playbackSlider {
+  margin-top: 6.5px;
+  width: 100%; 
+}
+
+.Audio .button {
+  color: white;
+}
+
+.Audio .volumeSliderContainer {
+  width: 15%;
+  align-self: flex-end;
+}
+
+.Audio .timeText {
+  font-size: 12px;
+}
