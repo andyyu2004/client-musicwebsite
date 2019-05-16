@@ -16,7 +16,9 @@ export async function uploadFile(e) {
 
 export async function registerUser(User) {
   const { password } = User;
-  const salt = crypto.randomBytes(16).toString('utf-8'); 
+  // Using hex here works for both
+  const salt = crypto.randomBytes(16).toString('hex')
+  console.log(salt)
   const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex');
   User.password = hash;
   User.salt = salt;
@@ -32,6 +34,7 @@ export async function signIn(User) {
   const { email, password } = User;
   const resp = await axios.get(`/api/salt/${email}`);
   const salt = resp.data.salt;
+  console.log(salt)
   if (!salt) {
     return console.log("Email does not exist");
   }
