@@ -29,9 +29,9 @@ export function* watchDeleteTracks() {
 }
 
 function* deleteTracksAsync(action) {
-  const { url } = action.payload
-  yield call(deleteTracks, url)
-  yield put({ type: FETCH_TRACKS })
+  const { url } = action.payload;
+  yield call(deleteTracks, url);
+  yield put({ type: FETCH_TRACKS });
 }
 
 function* fetchTracksByAlbumIdAsync(action) {

@@ -1,9 +1,11 @@
+'use strict'
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { SET_CURR_TRACK, DELETE_TRACK, ADD_TO_QUEUE as ADD_TRACK_TO_QUEUE, SHUFFLE_ALL } from '../actions/constants';
 import { ContextMenu } from '../containers';
 import shuffleIcon from '../images/shuffle_icon.png';
 import '../css/TrackList.scss';
+
 
 class TrackList extends Component {
 
@@ -31,7 +33,7 @@ class TrackList extends Component {
         <span className="shuffleAllContainer" onClick={()=>shuffleAll(items)}><img className="icon"src={shuffleIcon} alt=""/><button>Shuffle All</button></span>
         <div className="trackListContainer"> {items && items.map((t, i) => 
           <Fragment key={i}>
-            <button className="deleteButton" onClick={()=>deleteTrack(t.encoding, t.trackid)}>X</button>
+            <button className="deleteButton" onClick={()=>{deleteTrack(t)}}>X</button>
             <button 
               className="trackButton" 
               onClick={()=>setTrackUrl(t)}
@@ -45,7 +47,6 @@ class TrackList extends Component {
       </div>
     );
   }
-
 
 }
 
